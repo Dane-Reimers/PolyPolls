@@ -5,23 +5,15 @@ import './Election.sol';
 contract ElectionManager {
 
     uint numElections = 0;
-    mapping(string => Election) private electionsByName;
-    mapping(uint => Election) private electionsById;
-    mapping(string => bool) private electionExists;
-    string[] private electionNames;
+    mapping(uint => Election) private elections;
 
     constructor() public {
     }
 
     function createElection(string memory name) public {
-        require(electionExists[name] == false, "Cannot reuse election name");
-        
         Election newElection = new Election(name, msg.sender);
-        electionsByName[name] = newElection;
         numElections += 1;
-        electionsById[numElections] = newElection;
-        electionNames.push(name);
-        electionExists[name] = true;
+        elections[numElections] = newElection;
     }
     
     function getNumElections() public view
@@ -33,12 +25,6 @@ contract ElectionManager {
     function getElectionById(uint electionId) public view
         returns (Election)
     {
-        return electionsById[electionId];
-    }
-    
-    function getElectionByName(string memory name) public view
-        returns (Election)
-    {
-        return electionsByName[name];
+        return elections[electionId];
     }
 }
