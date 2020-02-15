@@ -1,4 +1,4 @@
-pragma solidity ^0.5.16;
+pragma solidity ^0.5.0;
 
 contract Election {
     
@@ -11,10 +11,8 @@ contract Election {
     string name;
     address creator;
     
-    // Mapping from hash of voter key to hash of voter value
-    mapping(bytes32 => bytes32) validVoters;
-    // Mapping from hash of voter key to bool voted
-    mapping(bytes32 => bool) voted;
+    // Records who has been added as a voter to prevent duplicate adds
+    mapping(address => bool) voters;
     
     uint candidatesCount;
     mapping(uint => Candidate) candidates;
@@ -48,10 +46,10 @@ contract Election {
         return (id, candidates[id].name, candidates[id].voteCount);
     }
     
-    function addVoter(bytes32 voterKeyHash, bytes32 voterValueHash) public {
+    function addVoter(address voter) public {
         require(msg.sender == creator, "Only the creator can add valid voters.");
-        require(validVoters[voterKeyHash] == 0, "This voter can already vote.");
-        validVoters[voterKeyHash] = voterValueHash;
+        require(voters[voter] == false, "This voter can already vote.");
+        voters[voter] = true;
     }
 
     function vote(uint candidateId, bytes32 voterKeyHash, bytes32 voterValueHash) public {
