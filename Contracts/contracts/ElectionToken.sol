@@ -7,7 +7,7 @@ contract ElectionToken is ERC721Full, ERC721Pausable {
 
     address creator;
 
-    constructor(string ElectionName, string abrev, address _creator) public {
+    constructor(string ElectionName, string abrev) public {
         ERC721Full(ElectionName, abrev);
         creator = _creator;
     }
