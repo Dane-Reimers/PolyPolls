@@ -5,10 +5,8 @@ import "@openzeppelin/contracts/token/ERC721/ERC721Pausable.sol";
 
 contract ElectionToken is ERC721Full, ERC721Pausable {
 
-    address creator;
 
     constructor(string ElectionName, string abrev) public {
         ERC721Full(ElectionName, abrev);
-        creator = _creator;
     }
 }
