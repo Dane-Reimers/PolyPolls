@@ -39,7 +39,7 @@ contract Election {
     {
         return candidatesCount;
     }
-    
+ 
     function getCandidate(uint id) public view
         returns (uint, string memory, uint)
     {
