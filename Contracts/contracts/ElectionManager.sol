@@ -1,15 +1,14 @@
-pragma solidity ^0.5.16;
+pragma solidity ^0.5.0;
 
 import './Election.sol';
 
 contract ElectionManager {
-    
+
     uint numElections = 0;
     mapping(string => Election) private electionsByName;
     mapping(uint => Election) private electionsById;
     mapping(string => bool) private electionExists;
     string[] private electionNames;
-    
 
     constructor() public {
     }
