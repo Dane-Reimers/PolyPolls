@@ -8,7 +8,7 @@ import "@openzeppelin/contracts/token/ERC721/ERC721Burnable.sol";
 contract ElectionToken is ERC721Full, ERC721Pausable, ERC721Burnable {
     using Counters for Counters.Counter;
     Counters.Counter private _tokenIds;
-    uint256 
+
 
     constructor(string memory _electionName, string memory _electionAbrev)
     ERC721Full(_electionName, _electionAbrev) public {

@@ -15,6 +15,7 @@ contract Election {
     mapping(address => bool) voters;
     
     uint candidatesCount;
+    address[] voters;
     mapping(uint => Candidate) candidates;
     mapping(string => bool) candidateExists;
 
