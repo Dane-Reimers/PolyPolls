@@ -10,8 +10,8 @@ contract ElectionToken is ERC721Full, ERC721Pausable, ERC721Burnable {
     Counters.Counter private _tokenIds;
 
 
-    constructor(string memory _electionName, string memory _electionAbrev)
-    ERC721Full(_electionName, _electionAbrev) public {
+    constructor(string memory _electionName)
+    ERC721Full(_electionName, "VT") public {
     }
 
     // Creates a 721 token for the creator of the election
@@ -23,7 +23,7 @@ contract ElectionToken is ERC721Full, ERC721Pausable, ERC721Burnable {
         _tokenIds.increment();
 
         uint256 voteID = _tokenIds.current();
-        _mint(voter, tokenID);
+        _mint(voter, voteID);
         _setTokenURI(voteID, electionName);
 
         return voteID;

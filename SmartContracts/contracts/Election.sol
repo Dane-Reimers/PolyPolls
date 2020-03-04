@@ -1,7 +1,7 @@
-pragma solidity ^0.5.0;
+pragma solidity >=0.5.0;
 
 contract Election {
-    
+
     struct Candidate {
         uint id;
         string name;
@@ -15,7 +15,7 @@ contract Election {
     mapping(address => bool) voters;
     
     uint candidatesCount;
-    address[] voters;
+    address[] voterAddresses;
     mapping(uint => Candidate) candidates;
     mapping(string => bool) candidateExists;
 
